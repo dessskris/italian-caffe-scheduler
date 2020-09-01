@@ -1,9 +1,28 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 
-/*test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});*/
+import App from './App';
+import { environment } from './environment';
+
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+it("Renders h1", () => {
+  act(() => {
+    render(
+      <App />, container);
+  });
+  expect(container.querySelector('h1').textContent).toBe(environment.title);
+});
