@@ -1,4 +1,5 @@
 import React from 'react';
+import './SequenceItem.css';
 
 export const SequenceItem = ({seqNo, secs, task}) => {
     let hh = Math.floor(secs / 3600);
