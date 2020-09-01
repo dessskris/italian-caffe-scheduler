@@ -39,6 +39,7 @@ class Schedule extends React.Component {
     render() {
         return (
             <div>
+                <h3>This is what your schedule will look like:</h3>
                 <Sequence orders={this.state.orders} />
                 <form onSubmit={this.createNewOrder}>
                     Create a New Order: <input type="text"
